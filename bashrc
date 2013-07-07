@@ -34,9 +34,9 @@ elif [ "${OS}" == "Darwin" ]; then
 fi
 #PS1 change color if you use this bashrc as root
 if [ $(id -u) -eq 0 ]; then
-  export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u@\[$(tput setaf 7)\]\h \W\\$ \[$(tput sgr0)\]"
+  export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u\[$(tput setaf 7)\]@\h \W \\$ \[$(tput sgr0)\]"
 else
-  export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\[$(tput setaf 7)\]\h \W\\$ \[$(tput sgr0)\]"
+  export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\h \W \\$ \[$(tput sgr0)\]"
 fi
 
 
