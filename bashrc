@@ -32,11 +32,26 @@ elif [ "${OS}" == "Darwin" ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# Set git autocompletion and PS1 integration
+if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
+  . /usr/local/git/contrib/completion/git-completion.bash
+fi
+if [ -f /opt/local/share/doc/git-core/contrib/completion/git-prompt.sh ]; then
+    . /opt/local/share/doc/git-core/contrib/completion/git-prompt.sh
+fi
+GIT_PS1_SHOWDIRTYSTATE=true
+
+if [ -f /opt/local/etc/bash_completion ]; then
+    . /opt/local/etc/bash_completion
+fi
+
 #PS1 change color if you use this bashrc as root
 if [ $(id -u) -eq 0 ]; then
   export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u\[$(tput setaf 7)\]@\h \W \\$ \[$(tput sgr0)\]"
 else
-  export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\h \W \\$ \[$(tput sgr0)\]"
+  #export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\h \W \\$ \[$(tput sgr0)\]"
+  export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\h \W \[\033[31m\]$(__git_ps1)\[\033[00m\] \\$ \[$(tput sgr0)\]"
 fi
 
 
@@ -61,3 +76,4 @@ fi
 #Some common places I like to put tools in my home dir
 pathadd $HOME/bin/dtrace
 pathadd $HOME/bin
+
