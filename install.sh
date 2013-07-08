@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #vim
 if [ -d $HOME/.vim ]; then
     mv $HOME/.vim $HOME/.vim_orig
