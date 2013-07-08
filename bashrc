@@ -53,8 +53,6 @@ else
   export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\h:\W\[$(tput setaf 1)\]\$(__git_ps1)\[$(tput setaf 7)\] \$ \[$(tput sgr0)\]"
 fi
 
-
-
 #functions
 #check and add path if it exists
 function pathadd {
@@ -76,3 +74,7 @@ fi
 pathadd $HOME/bin/dtrace
 pathadd $HOME/bin
 
+# debian bash competion when it exists
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
