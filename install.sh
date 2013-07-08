@@ -1,8 +1,8 @@
 #vim
-if [ -d $HOME/vim ]; then
-    mv $HOME/vim $HOME/vim_orig
+if [ -d $HOME/.vim ]; then
+    mv $HOME/.vim $HOME/.vim_orig
 fi
-ln -s $HOME/dotfiles/vim.symlink vim
+ln -s $HOME/dotfiles/vim.symlink .vim
 echo ":so ~/dotfiles/vimrc" >> ~/.vimrc
 
 #bash
@@ -14,6 +14,6 @@ EOF
 #git
 cat << 'EOF' >> $HOME/.gitconfig
 [include]
-  path = ~/src/dot-files/gitconfig.home
-  path = ~/src/dot-files/gitconfig
+  path = ~/dotfiles/gitconfig.home
+  path = ~/dotfiles/gitconfig
 EOF
