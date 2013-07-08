@@ -1,0 +1,11 @@
+[user]
+	name = James Legg
+	email = mail@jameslegg.co.uk
+[credential]
+	helper = osxkeychain
+[merge]
+	tool = vimdiff
+[color]
+	branch = auto
+	diff = auto
+	status = auto
