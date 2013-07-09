@@ -78,3 +78,8 @@ pathadd $HOME/bin
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
+
+# history timestamps and size
+export HISTTIMEFORMAT="%F %T "
+export HISTFILESIZE=10000
+export HISTSIZE=10000
