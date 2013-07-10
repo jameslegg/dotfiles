@@ -97,5 +97,15 @@ if [ "_${AGENT_PID}" == "_" ]; then
     eval `cat $MYTMP/agent-env.ssh`
     ssh-add
 else
-    eval `cat $MYTMP/agent-env.ssh`
+    #try and grab hold of an existing ssh-agent
+    if [ -f MYTMP/agent-env.ssh ]; then
+        eval `cat $MYTMP/agent-env.ssh`
+    fi
 fi
+
+#rbenv for managin ruby envs
+which rbenv 1>/dev/null
+if [ $? -eq 0 ]; then
+    eval "$(rbenv init -)"
+fi
+
