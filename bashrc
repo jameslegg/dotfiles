@@ -83,3 +83,19 @@ fi
 export HISTTIMEFORMAT="%F %T "
 export HISTFILESIZE=10000
 export HISTSIZE=10000
+
+#locked down /tmp
+MYTMP="/tmp/${USER}"
+mkdir -p $MYTMP
+chmod 700 $MYTMP
+
+#luanch an ssh-agent if no other keychain has done so
+AGENT_PID=`ps -u $USER | grep ssh-agen | awk '{ print $1 }'`
+if [ "_${AGENT_PID}" == "_" ]; then
+    ssh-agent > $MYTMP/agent-env.ssh
+    chmod 700 $MYTMP/agent-env.ssh
+    eval `cat $MYTMP/agent-env.ssh`
+    ssh-add
+else
+    eval `cat $MYTMP/agent-env.ssh`
+fi
