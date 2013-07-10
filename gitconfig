@@ -1,3 +1,6 @@
-[user]
-	name = James Legg
-	email = mail@jameslegg.co.uk
+[merge]
+    tool = vimdiff
+[color]
+    branch = auto
+    diff = auto
+    status = auto

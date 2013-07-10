@@ -14,8 +14,4 @@ cat << 'EOF' >> $HOME/.bashrc
 EOF
 
 #git
-cat << 'EOF' >> $HOME/.gitconfig
-[include]
-  path = ~/dotfiles/gitconfig.home
-  path = ~/dotfiles/gitconfig
-EOF
+cat ~/dotfiles/gitconfig* >> $HOME/.gitconfig
