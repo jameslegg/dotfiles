@@ -12,11 +12,10 @@ else
 fi
 
 #pager
-if [ -f /usr/bin/less ]; then
-  export PAGER=/usr/bin/less
-else
-  export PAGER=/bin/more
-fi
+export PAGER=~/dotfiles/bin/vimpager/vimpager
+alias less=$PAGER
+
+alias vimcat=~/dotfiles/bin/vimpager/vimcat
 
 # enable color support of ls and also add handy aliases
 # (from ubuntu's default bashrc)

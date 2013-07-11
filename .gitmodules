@@ -1,3 +1,6 @@
 [submodule "vim.symlink/bundle/syntastic"]
 	path = vim.symlink/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic
+[submodule "bin/vimpager"]
+	path = bin/vimpager
+	url = git@github.com:rkitover/vimpager.git
