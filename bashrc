@@ -65,7 +65,7 @@ if [ -f /usr/local/bin/brew ]; then
   function brewpath {
   echo "Mangling your PATH to catch brew installed things first"
   echo "Highly likely to act weirdly"
-  export PATH=/usr/local/bin:$PATH
+  export PATH=/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:$PATH
  }
 fi
 
