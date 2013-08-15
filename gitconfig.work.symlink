@@ -1,0 +1,9 @@
+[user]
+    name = James Legg
+    email =james.legg.conversocial.com
+[merge]
+    tool = vimdiff
+[color]
+    branch = auto
+    diff = auto
+    status = auto
