@@ -7,3 +7,6 @@
 [submodule "vim.symlink/bundle/vim-airline"]
 	path = vim.symlink/bundle/vim-airline
 	url = git@github.com:bling/vim-airline.git
+[submodule "vim.symlink/bundle/vim-gitgutter"]
+	path = vim.symlink/bundle/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git

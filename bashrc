@@ -140,3 +140,9 @@ fi
 if [ -f ~/.aws-creds ];then
     export AWS_CREDENTIAL_FILE=~/.aws-creds
 fi
+
+#local extras
+if [ -f ~/.bashrc.extra ];then
+    . ~/.bashrc.extra
+fi
+
