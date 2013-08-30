@@ -112,21 +112,26 @@ MYTMP="/tmp/${USER}"
 mkdir -p $MYTMP
 chmod 700 $MYTMP
 
-#luanch an ssh-agent if no other keychain has done so
-AGENT_PID=`ps -u $USER | grep ssh-agen | awk '{ print $1 }'`
-if [ "_${AGENT_PID}" == "_" ]; then
-    ssh-agent > $MYTMP/agent-env.ssh
-    chmod 700 $MYTMP/agent-env.ssh
-    eval `cat $MYTMP/agent-env.ssh`
+# Try to launch an ssh-agent if no other keychain has done so
+RUNNING_SSH_AGENT_PID=`ps -u $USER | grep ssh-agen | awk '{ print $1 }'`
+if [ "_${RUNNING_SSH_AGENT_PID}" == "_" ]; then
+    eval `ssh-agent`
     ssh-add
 else
-    #try and grab hold of an existing ssh-agent
-    if [ -f MYTMP/agent-env.ssh ]; then
-        eval `cat $MYTMP/agent-env.ssh`
+    # Do we have an ssh socket available already? (gnome keyring etc)
+    if [ "_${SSH_AUTH_SOCK}" == "_" ]; then
+        let SSH_AGENT_PID=$RUNNING_SSH_AGENT_PID-1
+
+        # Try and grab hold of an existing ssh-agent
+        SSH_TMPDIR=`ls -dl /tmp/ssh-* | grep $USER | awk '{ print $9 }'`
+        if [ -S ${SSH_TMPDIR}/agent.${SSH_AGENT_PID} ]; then
+            export SSH_AUTH_SOCK=${SSH_TMPDIR}/agent.${SSH_AGENT_PID}
+            export SSH_AGENT_PID
+        fi
     fi
 fi
 
-#rbenv for managin ruby envs
+# rbenv for managing ruby envs
 which rbenv 1>/dev/null
 if [ $? -eq 0 ]; then
     eval "$(rbenv init -)"
