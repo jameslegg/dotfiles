@@ -151,3 +151,10 @@ if [ -f ~/.bashrc.extra ];then
     . ~/.bashrc.extra
 fi
 
+if [ -d /opt/chef/embedded/bin ]; then
+    export PATH="/opt/chef/embedded/bin":$PATH
+fi
+
+if [ -d ~/dotfiles/bin ]; then
+    export PATH="~/dotfiles/bin":$PATH
+fi
