@@ -8,6 +8,7 @@ map <F2> :retab <CR>
 syntax enable
 "syntastic
 let g:syntastic_always_populate_loc_list=1
+let g:syntastic_check_on_open=1
 " vim-airline settings
 set laststatus=2
 " airline should play nice with syntastic
@@ -64,3 +65,10 @@ if has("autocmd")
     autocmd FileType latex setlocal nosmartindent
 endif
 
+"Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
