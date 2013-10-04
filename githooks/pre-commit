@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+git_base=`git rev-parse --show-toplevel`
+cd ${git_base}
+
+# Chef foodcritic
+# ===============
+# - Runs on all changed site-cookbooks
+#
+# Any changed site-cookbooks?
+chef_changed=`git diff --stat --cached | awk '/deploy\/chef\/site-cookbooks/ { print $1 }' | grep '.rb' | wc -l`
+
+
+if [ ${chef_changed} -gt 0 ]; then
+    for cookbook in `git diff --stat --cached | awk '/deploy\/chef\/site-cookbooks/ { split($1,line,"/"); print line[4]} ' | sort | uniq | grep -v README.md`; do
+        echo "Running foodcritic on $cookbook..."
+        cd ${git_base}
+        # Not worried about README format, checking all other foodcritic rules
+        foodcritic -f any \
+            --tags ~FC011 \
+            --tags ~FC012 \
+            ${git_base}/deploy/chef/site-cookbooks/${cookbook}
+        if [ $? -ne 0 ]; then
+            echo "foodcritic failed on $cookbook..."
+            exit 1
+        fi
+        if [ -f ${git_base}/deploy/chef/site-cookbooks/${cookbook}/Rakefile ]; then
+            echo "Running rake on $cookbook..."
+            cd ${git_base}/deploy/chef/site-cookbooks/${cookbook}
+            rake
+            if [ $? -ne 0 ]; then
+                echo "rake failed on $cookbook..."
+                exit 1
+            fi
+        else
+            echo "No Rakefile for $cookbook"
+        fi
+    done
+fi
+
+# pep8
+# ====
+# - Runs on all changed python files
+
+# Changed Python files
+cd ${git_base}
+python_changed=`git diff --stat --cached | awk '/\.py / { print $1 }'| wc -l`
+
+if [ ${python_changed} -gt 0 ]; then
+    echo "Running PEP8 on changed Python files..."
+    for py in `git diff --stat --cached | awk '/\.py / { print $1 }'`; do
+        pep8 --exclude=migrations --ignore=E261 --max-line-length=80 ${py}
+        if [ $? -ne 0 ]; then
+            echo "PEP8 failed on ${py} to bypass this failure use git commit -n (--no-verify)"
+            exit 1
+        fi
+    done
+fi
