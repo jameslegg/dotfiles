@@ -9,6 +9,9 @@ syntax enable
 "syntastic
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_check_on_open=1
+"syntastic python PEP8
+let g:syntastic_python_checkers=['flake8', 'pyflakes', 'python']
+let g:syntastic_python_checker_args='--exclude=migrations --ignore=E261 --max-line-length=80'
 " vim-airline settings
 set laststatus=2
 " airline should play nice with syntastic
