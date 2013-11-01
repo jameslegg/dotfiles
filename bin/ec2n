@@ -1,0 +1,2 @@
+#!/bin/bash
+ec2-describe-instances -Ftag:Name=$1 | awk '/INSTANCE/ { print $4 }'

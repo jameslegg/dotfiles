@@ -1,0 +1,11 @@
+#!/bin/bash
+# For use with ssh ProxyCommand, you will need working AWS CLI tools and keys
+# add the below to your ssh config
+#
+# Host *.ec2
+#     ProxyCommand nc $(ec2ssh %h) 22 %p
+#
+host_name=`echo $1 | sed s/.ec2//g`
+echo "Looking up ec2 name for $1" >&2
+ec2_name=`ec2-describe-instances -Ftag:Name=${host_name} | awk '/INSTANCE/ { print $4 }'`
+echo ${ec2_name}
