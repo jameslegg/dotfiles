@@ -5,7 +5,7 @@
 # Host *.ec2
 #     ProxyCommand nc $(ec2ssh %h) 22 %p
 #
-host_name=`echo $1 | sed s/.ec2//g`
+host_name=`echo $1 | sed s/\.ec2//g`
 echo "Looking up ec2 name for $1" >&2
-ec2_name=`ec2-describe-instances -Ftag:Name=${host_name} | awk '/INSTANCE/ { print $4 }'`
+ec2_name=`ec2-describe-instances -Ftag:Name=${host_name} | awk '/INSTANCE/ { print $4 }' | grep -v terminated`
 echo ${ec2_name}
