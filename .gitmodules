@@ -13,3 +13,9 @@
 [submodule "vim.symlink/bundle/vim-coffe-script"]
 	path = vim.symlink/bundle/vim-coffe-script
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim.symlink/bundle/YouCompleteMe"]
+	path = vim.symlink/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "vim.symlink/bundle/plaintasks"]
+	path = vim.symlink/bundle/plaintasks
+	url = git@github.com:elentok/plaintasks.vim.git
