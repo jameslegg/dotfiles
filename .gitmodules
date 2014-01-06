@@ -1,21 +1,3 @@
-[submodule "vim.symlink/bundle/syntastic"]
-	path = vim.symlink/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic
 [submodule "bin/vimpager"]
 	path = bin/vimpager
 	url = git@github.com:rkitover/vimpager.git
-[submodule "vim.symlink/bundle/vim-airline"]
-	path = vim.symlink/bundle/vim-airline
-	url = git@github.com:bling/vim-airline.git
-[submodule "vim.symlink/bundle/vim-gitgutter"]
-	path = vim.symlink/bundle/vim-gitgutter
-	url = git@github.com:airblade/vim-gitgutter.git
-[submodule "vim.symlink/bundle/vim-coffe-script"]
-	path = vim.symlink/bundle/vim-coffe-script
-	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "vim.symlink/bundle/YouCompleteMe"]
-	path = vim.symlink/bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule "vim.symlink/bundle/plaintasks"]
-	path = vim.symlink/bundle/plaintasks
-	url = git@github.com:elentok/plaintasks.vim.git

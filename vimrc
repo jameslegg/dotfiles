@@ -1,4 +1,23 @@
-execute pathogen#infect()
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+"Vundle Bundles
+
+" Vundle managed bundle
+Bundle 'gmarik/vundle'
+
+" All my old pathogen vim plugins
+Bundle 'scrooloose/syntastic'
+Bundle 'bling/vim-airline'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'elentok/plaintasks.vim'
+
+filetype plugin indent on     " required!
+
 set background=dark
 set expandtab
 set tabstop=4
