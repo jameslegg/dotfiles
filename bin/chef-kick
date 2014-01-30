@@ -1,0 +1,2 @@
+#!/bin/bash
+ssh $1 "sudo pkill -USR1 chef-client"
