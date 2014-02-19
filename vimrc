@@ -44,13 +44,12 @@ set noshowmode
 set t_Co=256
 "CoVim
 let CoVim_default_name = "JamesLegg"
-let CoVim_default_port = "9999"  
+let CoVim_default_port = "9999"
 " Scroll before I reach the window edge
 set scrolloff=2
 "Spelling
-autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd FileType gitcommit setlocal spell
-" Write files with sudo if opened without priviliedges
+setlocal spell
+" Write files with sudo if opened without privileges
 cmap w!! w !sudo tee % >/dev/null
 
 " Highlight 80th column so code can still be pretty in full-screen terminals
