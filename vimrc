@@ -15,8 +15,13 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'elentok/plaintasks.vim'
+" New stuff installed just with Vundle
+Bundle 'elzr/vim-json'
 
 filetype plugin indent on     " required!
+
+"Don't hide json double quotes with vim-json
+let g:vim_json_syntax_conceal = 0
 
 set background=dark
 set expandtab
