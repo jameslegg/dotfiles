@@ -47,13 +47,16 @@ let g:airline_powerline_fonts = 1
 set noshowmode
 " Setup colours to make airline work properly
 set t_Co=256
-"CoVim
-let CoVim_default_name = "JamesLegg"
-let CoVim_default_port = "9999"
 " Scroll before I reach the window edge
 set scrolloff=2
 "Spelling
-setlocal spell
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd BufRead,BufNewFile *.txt setlocal spell
+autocmd BufRead,BufNewFile *.py setlocal spell
+autocmd BufRead,BufNewFile *.rb setlocal spell
+autocmd BufRead,BufNewFile *.erb setlocal spell
+autocmd FileType gitcommit setlocal spell
+
 " Write files with sudo if opened without privileges
 cmap w!! w !sudo tee % >/dev/null
 
