@@ -64,7 +64,7 @@ function pathadd {
   fi
 }
 
-#brew path mangle fiunction if brew installed
+#brew path mangle function if brew installed
 if [ -f /usr/local/bin/brew ]; then
   function brewpath {
   echo "Mangling your PATH to catch brew installed things first"
@@ -91,8 +91,24 @@ if [ -d /opt/IAMCli ]; then
   export PATH=${PATH}:/${AWS_IAM_HOME}/bin
 fi
 
+# tmux guard session
+function muxguard() {
+    if [[ $1 == "init" ]];then
+        tmux new-session -s guard-generic
+        return
+    else
+        if [[ -f Guardfile ]];then
+            tmux list-sessions | grep ^guard-generic > /dev/null
+            if [[ $? -ne 0 ]]; then
+                echo "No tmux guard-generic session: start one with \"muxguard init\""
+            else
+                echo "starting guard in existing tmux guard-generic session"
+                tmux send-keys "cd `pwd`; bundle exec guard" C-m
+            fi
+        fi
+    fi
+}
 
- 
 #Some common places I like to put tools in my home dir
 pathadd $HOME/bin/dtrace
 pathadd $HOME/bin
