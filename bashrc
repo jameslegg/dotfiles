@@ -11,6 +11,11 @@ else
   export EDITOR=/usr/bin/vi
 fi
 
+# Use macvim if installed
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+    alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+fi
+
 #pager
 if [ -f ~/dotfiles/bin/vimpager/vimpage ]; then
     export PAGER=~/dotfiles/bin/vimpager/vimpager
