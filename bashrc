@@ -179,3 +179,23 @@ fi
 if [ -d ~/dotfiles/bin ]; then
     export PATH="~/dotfiles/bin":$PATH
 fi
+
+function bbc(){
+    git clone git@bitbucket.org:conversocial/$1.git
+    if [[ $? -eq 0 ]]; then
+        cd $1
+    else
+        echo "Failed to clone git@bitbucket.org:conversocial/$1.git"
+    fi
+}
+
+function ghc(){
+    git clone git@github.com:$1.git
+    if [[ $? -eq 0 ]]; then
+        mcd=$(echo $1 | awk '{ split($0,r,"\/"); print r[2]}')
+        cd $mcd
+    else
+        echo "Failed to clone git@github.com:$1.git"
+    fi
+}
+

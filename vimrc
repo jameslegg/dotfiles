@@ -52,9 +52,6 @@ set scrolloff=2
 "Spelling
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.txt setlocal spell
-autocmd BufRead,BufNewFile *.py setlocal spell
-autocmd BufRead,BufNewFile *.rb setlocal spell
-autocmd BufRead,BufNewFile *.erb setlocal spell
 autocmd FileType gitcommit setlocal spell
 
 " Write files with sudo if opened without privileges
