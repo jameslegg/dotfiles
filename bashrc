@@ -11,11 +11,6 @@ else
   export EDITOR=/usr/bin/vi
 fi
 
-# Use macvim if installed
-if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
-    alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
-fi
-
 #pager
 if [ -f ~/dotfiles/bin/vimpager/vimpage ]; then
     export PAGER=~/dotfiles/bin/vimpager/vimpager
@@ -76,6 +71,8 @@ if [ -f /usr/local/bin/brew ]; then
   echo "Highly likely to act weirdly"
   export PATH=/usr/local/Cellar/ruby/1.9.2-p290/bin:/usr/local/bin:$PATH
  }
+ # Add stuff installed by brew to the front of our path
+ export PATH="/usr/local/sbin:$PATH"
 fi
 
 #java home
