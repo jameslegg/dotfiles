@@ -1,8 +1,8 @@
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 "Vundle Bundles
 
 " Vundle managed bundle
@@ -17,11 +17,15 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'elentok/plaintasks.vim'
 " New stuff installed just with Vundle
 Bundle 'elzr/vim-json'
+call vundle#end()
 
 filetype plugin indent on     " required!
 
 "Don't hide json double quotes with vim-json
 let g:vim_json_syntax_conceal = 0
+
+" Set cloudformation .templates to json
+au BufRead,BufNewFile *.template set filetype=json
 
 set background=dark
 set expandtab
