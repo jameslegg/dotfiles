@@ -13,7 +13,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-airline'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'elentok/plaintasks.vim'
 " New stuff installed just with Vundle
 Bundle 'elzr/vim-json'
