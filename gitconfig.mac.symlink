@@ -1,6 +1,6 @@
 [user]
     name = James Legg
-    email = mail@jameslegg.co.uk
+	email = james.legg@conversocial.com
 [credential]
     helper = osxkeychain
 [merge]

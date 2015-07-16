@@ -14,6 +14,7 @@ Bundle 'bling/vim-airline'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'elentok/plaintasks.vim'
+Bundle 'terryma/vim-multiple-cursors'
 " New stuff installed just with Vundle
 Bundle 'elzr/vim-json'
 call vundle#end()
@@ -42,7 +43,6 @@ let g:syntastic_python_checker_args='--exclude=migrations --ignore=E261 --max-li
 " vim-airline settings
 set laststatus=2
 " airline should play nice with syntastic
-let g:airline_enable_syntastic = 1
 let g:airline_theme='dark'
 " use pretty fonts from powerline
 let g:airline_powerline_fonts = 1
