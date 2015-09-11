@@ -1,5 +1,5 @@
 [user]
-    name = James Legg
+	name = James Legg
 	email = james.legg@conversocial.com
 [credential]
     helper = osxkeychain
@@ -10,3 +10,5 @@
     diff = auto
     status = auto
 
+[james]
+	legg = james.legg@conversocial.com
