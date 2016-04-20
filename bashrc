@@ -115,6 +115,9 @@ function muxguard() {
 pathadd $HOME/bin/dtrace
 pathadd $HOME/bin
 
+# ChefDK
+pathadd /opt/chefdk/bin
+
 # debian bash competion when it exists
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
@@ -169,10 +172,6 @@ if [ -f ~/.bashrc.extra ];then
     . ~/.bashrc.extra
 fi
 
-if [ -d /opt/chef/embedded/bin ]; then
-    export PATH="/opt/chef/embedded/bin":$PATH
-fi
-
 if [ -d ~/dotfiles/bin ]; then
     export PATH="~/dotfiles/bin":$PATH
 fi
@@ -195,4 +194,4 @@ function ghc(){
         echo "Failed to clone git@github.com:$1.git"
     fi
 }
-
+source /usr/local/bin/virtualenvwrapper.sh
