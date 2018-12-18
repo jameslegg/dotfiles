@@ -15,8 +15,21 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'elentok/plaintasks.vim'
 Bundle 'terryma/vim-multiple-cursors'
+
 " New stuff installed just with Vundle
 Bundle 'elzr/vim-json'
+Bundle 'hashivim/vim-terraform'
+
+" VIM SnipMate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+" Optional:
+Plugin 'honza/vim-snippets'
+
+Plugin 'isRuslan/vim-es6'
+
 call vundle#end()
 
 filetype plugin indent on     " required!
@@ -26,6 +39,14 @@ let g:vim_json_syntax_conceal = 0
 
 " Set cloudformation .templates to json
 au BufRead,BufNewFile *.template set filetype=json
+
+"Terraform
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_remap_spacebar=1
+let g:terraform_commentstring='//%s'
+let g:terraform_fmt_on_save=1
+
 
 set background=dark
 set expandtab
@@ -40,6 +61,8 @@ let g:syntastic_check_on_open=1
 "syntastic python PEP8
 let g:syntastic_python_checkers=['flake8', 'pyflakes', 'python']
 let g:syntastic_python_checker_args='--exclude=migrations --ignore=E261 --max-line-length=80'
+"syntastic eslint
+let g:syntastic_javascript_checkers=["eslint"]
 " vim-airline settings
 set laststatus=2
 " airline should play nice with syntastic
