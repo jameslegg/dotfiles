@@ -21,6 +21,8 @@ fi
 
 alias vimcat=~/dotfiles/bin/vimpager/vimcat
 
+eval "$(chef shell-init bash)"
+
 # enable color support of ls and also add handy aliases
 # (from ubuntu's default bashrc)
 if [ -x /usr/bin/dircolors ]; then
