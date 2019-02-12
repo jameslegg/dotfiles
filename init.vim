@@ -16,11 +16,10 @@ let g:terraform_remap_spacebar=1
 let g:terraform_commentstring='//%s'
 let g:terraform_fmt_on_save=1
 
-
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.5/bin/python3'
+let g:python3_host_prog = '/usr/local/bin/python3'
 "call deoplete#initialize()
 
 set background=dark
@@ -109,16 +108,16 @@ call plug#begin()
 Plug 'gmarik/vundle'
 
 " All my old pathogen vim plugins
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'kchmck/vim-coffee-script'
 Plug 'elentok/plaintasks.vim'
 Plug 'terryma/vim-multiple-cursors'
 
-" New stuff installed just with Vundle
 Plug 'elzr/vim-json'
 Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
 
 " VIM SnipMate
 Plug 'MarcWeber/vim-addon-mw-utils'
