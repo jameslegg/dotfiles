@@ -8,11 +8,20 @@ set -o vi
 if [ -f ~/bin/nvim-osx64/bin/nvim ]; then
   export EDITOR=~/bin/nvim-osx64/bin/nvim
   alias vim=~/bin/nvim-osx64/bin/nvim
+elif [ -f /usr/local/bin/nvim ]; then
+  export EDITOR=/usr/local/bin/nvim
+  alias vim=/usr/local/bin/nvim
+elif [ -f /usr/bin/vim ]; then
+  export EDITOR=/usr/bin/vim
 else
   export EDITOR=/usr/bin/vi
 fi
 
+PAGER=/usr/bin/less
+
 alias vimcat=~/dotfiles/bin/vimpager/vimcat
+
+eval "$(chef shell-init bash)"
 
 # enable color support of ls and also add handy aliases
 # (from ubuntu's default bashrc)
