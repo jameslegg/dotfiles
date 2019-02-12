@@ -5,18 +5,11 @@ OS=`uname -s`
 set -o vi
 
 #editor
-if [ -f /usr/bin/vim ]; then
-  export EDITOR=/usr/bin/vim
+if [ -f ~/bin/nvim-osx64/bin/nvim ]; then
+  export EDITOR=~/bin/nvim-osx64/bin/nvim
+  alias vim=~/bin/nvim-osx64/bin/nvim
 else
   export EDITOR=/usr/bin/vi
-fi
-
-#pager
-if [ -f ~/dotfiles/bin/vimpager/vimpage ]; then
-    export PAGER=~/dotfiles/bin/vimpager/vimpager
-    alias less=$PAGER
-else
-    PAGER=/usr/bin/less
 fi
 
 alias vimcat=~/dotfiles/bin/vimpager/vimcat
