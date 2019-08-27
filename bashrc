@@ -21,8 +21,6 @@ PAGER=/usr/bin/less
 
 alias vimcat=~/dotfiles/bin/vimpager/vimcat
 
-eval "$(chef shell-init bash)"
-
 # enable color support of ls and also add handy aliases
 # (from ubuntu's default bashrc)
 if [ -x /usr/bin/dircolors ]; then
@@ -77,44 +75,6 @@ if [ -f /usr/local/bin/brew ]; then
  export PATH="/usr/local/sbin:$PATH"
 fi
 
-#java home
-ISJAVA=`which java`
-if [ -f $ISJAVA ]; then
-    export JAVA_HOME=`echo $ISJAVA|sed 's/\/bin\/java//'`
-fi
-
-#ec2 tools
-if [ -d /opt/ec2-api-tools/bin/ ]; then
-  export EC2_HOME=/opt/ec2-api-tools
-  export PATH=$PATH:/${EC2_HOME}/bin
-fi
-
-#iam tools /opt/IAMCli
-if [ -d /opt/IAMCli ]; then
-  export AWS_IAM_HOME=/opt/IAMCli
-  export PATH=${PATH}:/${AWS_IAM_HOME}/bin
-fi
-
-# tmux guard session
-function muxguard() {
-    if [[ $1 == "init" ]];then
-        tmux new-session -s guard-generic
-        return
-    else
-        if [[ -f Guardfile ]];then
-            tmux list-sessions | grep ^guard-generic > /dev/null
-            if [[ $? -ne 0 ]]; then
-                echo "No tmux guard-generic session: start one with \"muxguard init\""
-            else
-                echo "starting guard in existing tmux guard-generic session"
-                tmux send-keys "cd `pwd`; bundle exec guard" C-m
-            fi
-        fi
-    fi
-}
-
-#Some common places I like to put tools in my home dir
-pathadd $HOME/bin/dtrace
 pathadd $HOME/bin
 
 # ChefDK
@@ -160,15 +120,6 @@ if [ $? -eq 0 ]; then
     eval "$(rbenv init -)"
 fi
 
-#AWS stuff if it exists
-if [ -f ~/.aws-secrets ];then
-    . ~/.aws-secrets
-fi
-#IAM has yet another key format
-if [ -f ~/.aws-creds ];then
-    export AWS_CREDENTIAL_FILE=~/.aws-creds
-fi
-
 #local extras
 if [ -f ~/.bashrc.extra ];then
     . ~/.bashrc.extra
@@ -177,15 +128,6 @@ fi
 if [ -d ~/dotfiles/bin ]; then
     export PATH="~/dotfiles/bin":$PATH
 fi
-
-function bbc(){
-    git clone git@bitbucket.org:conversocial/$1.git
-    if [[ $? -eq 0 ]]; then
-        cd $1
-    else
-        echo "Failed to clone git@bitbucket.org:conversocial/$1.git"
-    fi
-}
 
 function ghc(){
     git clone git@github.com:$1.git
