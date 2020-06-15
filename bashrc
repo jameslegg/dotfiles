@@ -5,10 +5,7 @@ OS=`uname -s`
 set -o vi
 
 #editor
-if [ -f ~/bin/nvim-osx64/bin/nvim ]; then
-  export EDITOR=~/bin/nvim-osx64/bin/nvim
-  alias vim=~/bin/nvim-osx64/bin/nvim
-elif [ -f /usr/local/bin/nvim ]; then
+if [ -f /usr/local/bin/nvim ]; then
   export EDITOR=/usr/local/bin/nvim
   alias vim=/usr/local/bin/nvim
 elif [ -f /usr/bin/vim ]; then
@@ -36,6 +33,9 @@ elif [ "${OS}" == "Darwin" ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# bash tab completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 # Set git autocompletion and PS1 integration
 if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
   . /usr/local/git/contrib/completion/git-completion.bash
@@ -44,10 +44,6 @@ if [ -f /opt/local/share/doc/git-core/contrib/completion/git-prompt.sh ]; then
     . /opt/local/share/doc/git-core/contrib/completion/git-prompt.sh
 fi
 GIT_PS1_SHOWDIRTYSTATE=true
-
-if [ -f /opt/local/etc/bash_completion ]; then
-    . /opt/local/etc/bash_completion
-fi
 
 #PS1 change color if you use this bashrc as root
 if [ $(id -u) -eq 0 ]; then
@@ -94,31 +90,6 @@ export HISTSIZE=10000
 MYTMP="/tmp/${USER}"
 mkdir -p $MYTMP
 chmod 700 $MYTMP
-
-# Try to launch an ssh-agent if no other keychain has done so
-RUNNING_SSH_AGENT_PID=`ps -u $USER | grep ssh-agen | awk '{ print $1 }'`
-if [ "_${RUNNING_SSH_AGENT_PID}" == "_" ]; then
-    eval `ssh-agent`
-    ssh-add
-else
-    # Do we have an ssh socket available already? (gnome keyring etc)
-    if [ "_${SSH_AUTH_SOCK}" == "_" ]; then
-        let SSH_AGENT_PID=$RUNNING_SSH_AGENT_PID-1
-
-        # Try and grab hold of an existing ssh-agent
-        SSH_TMPDIR=`ls -dl /tmp/ssh-* | grep $USER | awk '{ print $9 }'`
-        if [ -S ${SSH_TMPDIR}/agent.${SSH_AGENT_PID} ]; then
-            export SSH_AUTH_SOCK=${SSH_TMPDIR}/agent.${SSH_AGENT_PID}
-            export SSH_AGENT_PID
-        fi
-    fi
-fi
-
-# rbenv for managing ruby envs
-which rbenv 1>/dev/null
-if [ $? -eq 0 ]; then
-    eval "$(rbenv init -)"
-fi
 
 #local extras
 if [ -f ~/.bashrc.extra ];then

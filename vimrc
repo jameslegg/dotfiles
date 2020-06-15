@@ -1,12 +1,14 @@
+" called from ~/.config/nvim/init.vim
+
 set nocompatible              " be iMproved
 filetype off                  " required!
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-"Vundle Bundles
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'editorconfig/editorconfig-vim'
 
-" Vundle managed bundle
-Bundle 'gmarik/vundle'
+Plugin 'pignacio/vim-yapf-format'
 
 " All my old pathogen vim plugins
 Bundle 'scrooloose/syntastic'
@@ -42,7 +44,7 @@ au BufRead,BufNewFile *.template set filetype=json
 
 "Terraform
 let g:terraform_align=1
-let g:terraform_fold_sections=1
+let g:terraform_fold_sections=0
 let g:terraform_remap_spacebar=1
 let g:terraform_commentstring='//%s'
 let g:terraform_fmt_on_save=1
@@ -60,7 +62,7 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_check_on_open=1
 "syntastic python PEP8
 let g:syntastic_python_checkers=['flake8', 'pyflakes', 'python']
-let g:syntastic_python_checker_args='--exclude=migrations --ignore=E261 --max-line-length=80'
+let g:syntastic_python_checker_args='--exclude=migrations --ignore=E261 --max-line-length=100'
 "syntastic eslint
 let g:syntastic_javascript_checkers=["eslint"]
 " vim-airline settings
