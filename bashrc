@@ -45,11 +45,29 @@ if [ -f /opt/local/share/doc/git-core/contrib/completion/git-prompt.sh ]; then
 fi
 GIT_PS1_SHOWDIRTYSTATE=true
 
+# https://coderwall.com/p/s-2_nw/change-iterm2-color-profile-from-the-cli
+# iTerm2 Profile selection
+it2prof() {
+    echo -en "\033]50;SetProfile=$1\a"
+    echo ""
+}
+
+function mykube_ps1 {
+    context=`kubectl config current-context`
+    echo "($context)"
+    if [[ $context == *Live*Admin* && $context != *UnLive* ]]; then
+        it2prof "RootLive"
+    else
+        it2prof "Default"
+    fi
+}
+#alias mykube_ps1='echo \( `kubectl config current-context`\)'
+
 #PS1 change color if you use this bashrc as root
 if [ $(id -u) -eq 0 ]; then
   export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u\[$(tput setaf 7)\]@\h:\W\[$(tput setaf 1)\]\$(__git_ps1)\[$(tput setaf 7)\] \$ \[$(tput sgr0)\]"
 else
-  export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\h:\W\[$(tput setaf 1)\]\$(__git_ps1)\[$(tput setaf 7)\] \$ \[$(tput sgr0)\]"
+    export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u\[$(tput setaf 7)\]@\h:\W\[$(tput setaf 1)\]\$(__git_ps1)\[$(tput setaf 7)\] \$(mykube_ps1)\$ \[$(tput sgr0)\]"
 fi
 
 #functions

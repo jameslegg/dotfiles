@@ -1,4 +1,4 @@
-" called from ~/.config/nvim/init.vim
+"called from ~/.config/nvim/init.vim
 
 set nocompatible              " be iMproved
 filetype off                  " required!
@@ -65,6 +65,7 @@ let g:syntastic_python_checkers=['flake8', 'pyflakes', 'python']
 let g:syntastic_python_checker_args='--exclude=migrations --ignore=E261 --max-line-length=100'
 "syntastic eslint
 let g:syntastic_javascript_checkers=["eslint"]
+let g:syntastic_yaml_checkers = ['yamllint']
 " vim-airline settings
 set laststatus=2
 " airline should play nice with syntastic
@@ -85,9 +86,9 @@ autocmd FileType gitcommit setlocal spell
 " Write files with sudo if opened without privileges
 cmap w!! w !sudo tee % >/dev/null
 
-" Highlight 80th column so code can still be pretty in full-screen terminals
+" Highlight 101th column so code can still be pretty in full-screen terminals
 if exists("&colorcolumn")
-    set colorcolumn=81
+    set colorcolumn=101
     hi ColorColumn guibg=#3d3d3d
 endif
 
