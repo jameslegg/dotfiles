@@ -8,7 +8,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'editorconfig/editorconfig-vim'
 
-Plugin 'pignacio/vim-yapf-format'
+" Plugin 'pignacio/vim-yapf-format'
 
 " All my old pathogen vim plugins
 Bundle 'scrooloose/syntastic'
@@ -21,6 +21,7 @@ Bundle 'terryma/vim-multiple-cursors'
 " New stuff installed just with Vundle
 Bundle 'elzr/vim-json'
 Bundle 'hashivim/vim-terraform'
+Bundle 'juliosueiras/vim-terraform-completion'
 
 " VIM SnipMate
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -42,13 +43,41 @@ let g:vim_json_syntax_conceal = 0
 " Set cloudformation .templates to json
 au BufRead,BufNewFile *.template set filetype=json
 
-"Terraform
+"Terraform Completion minimal config
 let g:terraform_align=1
 let g:terraform_fold_sections=0
 let g:terraform_remap_spacebar=1
 let g:terraform_commentstring='//%s'
 let g:terraform_fmt_on_save=1
 
+" Minimal Configuration vim -completion
+" Syntastic Config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" (Optional)Remove Info(Preview) window
+set completeopt-=preview
+
+" (Optional)Hide Info(Preview) window after completions
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" (Optional) Enable terraform plan to be include in filter
+let g:syntastic_terraform_tffilter_plan = 1
+
+" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
+let g:terraform_completion_keys = 1
+
+" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
+let g:terraform_registry_module_completion = 0
+
+" End terraform-completion
 
 set background=dark
 set expandtab
@@ -65,7 +94,12 @@ let g:syntastic_python_checkers=['flake8', 'pyflakes', 'python']
 let g:syntastic_python_checker_args='--exclude=migrations --ignore=E261 --max-line-length=100'
 "syntastic eslint
 let g:syntastic_javascript_checkers=["eslint"]
+"syntastic yamlint
 let g:syntastic_yaml_checkers = ['yamllint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_quiet_messages = { "type": "style" }
 " vim-airline settings
 set laststatus=2
 " airline should play nice with syntastic

@@ -47,21 +47,23 @@ GIT_PS1_SHOWDIRTYSTATE=true
 
 # https://coderwall.com/p/s-2_nw/change-iterm2-color-profile-from-the-cli
 # iTerm2 Profile selection
+# This has a habit of messing up shell prompts hence the blank line
 it2prof() {
     echo -en "\033]50;SetProfile=$1\a"
-    echo ""
 }
 
-function mykube_ps1 {
-    context=`kubectl config current-context`
-    echo "($context)"
-    if [[ $context == *Live*Admin* && $context != *UnLive* ]]; then
+function mykube_shell {
+    context=`/Applications/Docker.app/Contents/Resources/bin/kubectl config current-context`
+    if [[ $context == *live*admin* && $context != *unlive* ]]; then
         it2prof "RootLive"
     else
         it2prof "Default"
     fi
 }
-#alias mykube_ps1='echo \( `kubectl config current-context`\)'
+
+PROMPT_COMMAND=mykube_shell
+
+alias mykube_ps1='echo \( `/Applications/Docker.app/Contents/Resources/bin/kubectl config current-context` \)'
 
 #PS1 change color if you use this bashrc as root
 if [ $(id -u) -eq 0 ]; then
