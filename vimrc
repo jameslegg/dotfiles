@@ -3,37 +3,60 @@
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'editorconfig/editorconfig-vim'
+" Installed using Plug
+call plug#begin('~/.vim/plugged')
 
-" Plugin 'pignacio/vim-yapf-format'
+Plug 'bling/vim-airline'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tjdevries/colorbuddy.vim'
+Plug 'Th3Whit3Wolf/onebuddy', { 'branch': 'main' }
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'juliosueiras/vim-terraform-completion'
+Plug 'airblade/vim-gitgutter'
+Plug 'elzr/vim-json'
+Plug 'scrooloose/syntastic'
 
-" All my old pathogen vim plugins
-Bundle 'scrooloose/syntastic'
-Bundle 'bling/vim-airline'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'elentok/plaintasks.vim'
-Bundle 'terryma/vim-multiple-cursors'
+call plug#end()
 
-" New stuff installed just with Vundle
-Bundle 'elzr/vim-json'
-Bundle 'hashivim/vim-terraform'
-Bundle 'juliosueiras/vim-terraform-completion'
+" mimic atom
+set termguicolors
+colorscheme onebuddy
 
-" VIM SnipMate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+" Languge server setup:
+" https://coffeeandcontemplation.dev/2021/01/10/language-server-in-vim/
+luafile ~/.vim/lsp_config.lua
 
-" Optional:
-Plugin 'honza/vim-snippets'
+sign define LspDiagnosticsSignError text=🔴
+sign define LspDiagnosticsSignWarning text=🟠
+sign define LspDiagnosticsSignInformation text=🔵
+sign define LspDiagnosticsSignHint text=🟢
 
-Plugin 'isRuslan/vim-es6'
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <leader>f    <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 
-call vundle#end()
+nnoremap <silent> <leader>a <cmd>lua vim.lsp.buf.code_action()<CR>
+xmap <silent> <leader>a <cmd>lua vim.lsp.buf.range_code_action()<CR>
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+let g:completion_enable_auto_popup = 0
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
 
 filetype plugin indent on     " required!
 
