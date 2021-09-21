@@ -12,10 +12,13 @@ Plug 'tjdevries/colorbuddy.vim'
 Plug 'Th3Whit3Wolf/onebuddy', { 'branch': 'main' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'airblade/vim-gitgutter'
 Plug 'elzr/vim-json'
 Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -25,7 +28,10 @@ colorscheme onebuddy
 
 " Languge server setup:
 " https://coffeeandcontemplation.dev/2021/01/10/language-server-in-vim/
-luafile ~/.vim/lsp_config.lua
+luafile ~/dotfiles/lsp_config.lua
+
+" Use completion-nvim in every buffer
+autocmd BufEnter * lua require'completion'.on_attach()
 
 sign define LspDiagnosticsSignError text=🔴
 sign define LspDiagnosticsSignWarning text=🟠
@@ -50,11 +56,27 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+" Snippets I *think* this should work with nvim-lua/completion-nvim ?
+let g:completion_enable_snippet = 'UltiSnips'
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-let g:completion_enable_auto_popup = 0
+" python venv
+" Set up using:
+" curl https://pyenv.run | bash #YOLO
+" pyenv virtualenv 2.7.17 neovim2
+" pyenv activate neovim2
+" pip install neovim
+" pyenv virtualenv 3.9.5 neovim3
+" pyenv activate neovim3
+" pip install neovim
+" pip install flake8
+" pip intall 'python-lsp-server[all]'
+let g:python_host_prog = '/Users/james/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/james/.pyenv/versions/neovim3/bin/python'
+
+
 imap <tab> <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
 
@@ -81,7 +103,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " (Optional)Remove Info(Preview) window
