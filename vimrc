@@ -73,8 +73,8 @@ set shortmess+=c
 " pip install neovim
 " pip install flake8
 " pip intall 'python-lsp-server[all]'
-let g:python_host_prog = '/Users/james/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/james/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '/Users/JamesL/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/JamesL/.pyenv/versions/neovim3/bin/python'
 
 
 imap <tab> <Plug>(completion_smart_tab)

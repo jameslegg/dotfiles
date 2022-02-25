@@ -4,6 +4,8 @@ OS=`uname -s`
 #generic setup
 set -o vi
 
+alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+
 #editor
 if [ -f /usr/local/bin/nvim ]; then
   export EDITOR=/usr/local/bin/nvim
@@ -53,17 +55,20 @@ it2prof() {
 }
 
 function mykube_shell {
-    context=`/Applications/Docker.app/Contents/Resources/bin/kubectl config current-context`
-    if [[ $context == *live*admin* && $context != *unlive* ]]; then
-        it2prof "RootLive"
+    context=`/usr/local/bin/kubectl config current-context`
+    if [[ $context == *prod* || $AWS_PROFILE == *prod* ]]; then
+        # Danger Will Robinson!
+        it2prof "rootLive"
+        PS1_WARN=🚨
     else
         it2prof "Default"
+        PS1_WARN=""
     fi
 }
 
 PROMPT_COMMAND=mykube_shell
 
-alias mykube_ps1='echo \( `/Applications/Docker.app/Contents/Resources/bin/kubectl config current-context` \)'
+alias mykube_ps1='echo \☸️ -\>`/usr/local/bin/kubectl config current-context` $PS1_WARN\'
 
 #PS1 change color if you use this bashrc as root
 if [ $(id -u) -eq 0 ]; then
