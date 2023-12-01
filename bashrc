@@ -47,19 +47,23 @@ if [ -f /opt/local/share/doc/git-core/contrib/completion/git-prompt.sh ]; then
 fi
 GIT_PS1_SHOWDIRTYSTATE=true
 
+
+alias iterm-profile-disable='eval `echo export ITERM_PROFILE_DISABLE=yes`'
 # https://coderwall.com/p/s-2_nw/change-iterm2-color-profile-from-the-cli
 # iTerm2 Profile selection
 # This has a habit of messing up shell prompts hence the blank line
 it2prof() {
-    echo -en "\033]50;SetProfile=$1\a"
+    if [[ -z $ITERM_PROFILE_DISABLE ]]; then
+        echo -en "\033]50;SetProfile=$1\a"
+    fi
 }
 
 function mykube_shell {
-    context=`/usr/local/bin/kubectl config current-context`
+    context=`/usr/local/bin/kubectl config current-context 2> /dev/null`
     if [[ $context == *prod* || $AWS_PROFILE == *prod* ]]; then
         # Danger Will Robinson!
         it2prof "rootLive"
-        PS1_WARN=🚨
+        PS1_WARN="!!"
     else
         it2prof "Default"
         PS1_WARN=""
@@ -68,7 +72,7 @@ function mykube_shell {
 
 PROMPT_COMMAND=mykube_shell
 
-alias mykube_ps1='echo \☸️ -\>`/usr/local/bin/kubectl config current-context` $PS1_WARN\'
+alias mykube_ps1='echo \⎈-\>`/usr/local/bin/kubectl config current-context 2>/dev/null` $PS1_WARN\'
 
 #PS1 change color if you use this bashrc as root
 if [ $(id -u) -eq 0 ]; then
@@ -97,9 +101,7 @@ if [ -f /usr/local/bin/brew ]; then
 fi
 
 pathadd $HOME/bin
-
-# ChefDK
-pathadd /opt/chefdk/bin
+pathadd $HOME/.rd/bin
 
 # debian bash competion when it exists
 if [ -f /etc/bash_completion ]; then
