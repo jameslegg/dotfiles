@@ -1,4 +1,4 @@
-"called from ~/.config/nvim/init.vim
+"tcalled from ~/.config/nvim/init.vim
 
 set nocompatible              " be iMproved
 filetype off                  " required!
@@ -10,10 +10,10 @@ Plug 'bling/vim-airline'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'Th3Whit3Wolf/onebuddy', { 'branch': 'main' }
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-lua/completion-nvim'
 Plug 'hashivim/vim-terraform'
-Plug 'juliosueiras/vim-terraform-completion'
+" Plug 'juliosueiras/vim-terraform-completion'
 Plug 'airblade/vim-gitgutter'
 Plug 'elzr/vim-json'
 Plug 'scrooloose/syntastic'
@@ -28,10 +28,10 @@ colorscheme onebuddy
 
 " Languge server setup:
 " https://coffeeandcontemplation.dev/2021/01/10/language-server-in-vim/
-luafile ~/dotfiles/lsp_config.lua
+" luafile ~/dotfiles/lsp_config.lua
 
 " Use completion-nvim in every buffer
-autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter * lua require'completion'.on_attach()
 
 sign define LspDiagnosticsSignError text=🔴
 sign define LspDiagnosticsSignWarning text=🟠
