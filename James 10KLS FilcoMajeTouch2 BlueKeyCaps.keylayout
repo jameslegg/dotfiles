@@ -2,8 +2,8 @@
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <!--Filco 10keyless Majectouch 2 - with custom blue keycaps in non standard places-->
 <!---->
-<!--Last edited by Ukelele version 359 on 2023-12-28 at 17:00 (GMT)-->
-<keyboard group="126" id="-22514" name="Filco BlueKeyCaps" maxout="2">
+<!--Last edited by Ukelele version 359 on 2023-12-29 at 08:27 (GMT)-->
+<keyboard group="126" id="-22514" name="Filco BlueKeyCaps" maxout="1">
     <layouts>
         <layout first="0" last="17" mapSet="ANSI" modifiers="Modifiers"/>
         <layout first="18" last="18" mapSet="JIS" modifiers="Modifiers"/>
@@ -64,7 +64,7 @@
             <key code="26" output="7"/>
             <key code="27" output="-"/>
             <key code="28" output="8"/>
-            <key code="29" output="10"/>
+            <key code="29" output="0"/>
             <key code="30" output="]"/>
             <key code="31" output="o"/>
             <key code="32" output="u"/>
